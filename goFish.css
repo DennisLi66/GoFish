@@ -1,0 +1,22 @@
+body{
+    background-color: tan;
+    font-family: Arial;
+    text-align: center;
+}
+#infoBox{
+    font-size: larger;
+}
+input{
+    border: 2px solid gray;
+    padding: 10px 10px;
+}
+button{
+    background-color:white;
+    border: 1px solid gray;
+    margin: 4px 2px;
+    padding: 10px 10px;
+}
+#theLog{
+    width: 0;
+    height: 100%;
+}

@@ -1,0 +1,24 @@
+    promptForAction(x){
+        let strToWrite = "";
+        strToWrite += "It is now " + this.playerName + "'s turn.";
+        //show hand
+        if (x == "p1"){
+            console.log(this.p1.printHand());
+            console.log("Which card will you ask for?");
+            document.getElementById("infoBox").innerText = "Which card will you ask for?";
+            ///write a list to action bar or display cards there
+            if (this.p1.length == 0){
+                this.p1.addToHand(this.deck.draw());
+            }
+            this.displayHand(this.p1.returnListOfCards());
+        }
+        else{
+            console.log(this.p2.printHand());
+            console.log("Which card will you ask for?");
+            document.getElementById("infoBox").innerText = "Which card will you ask for?";
+            if (this.p2.length == 0){
+                this.p2.addToHand(this.deck.draw());
+            }
+            this.displayHand(this.p2.returnListOfCards());
+        }
+    }
