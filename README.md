@@ -1,5 +1,6 @@
 # GoFish
 Generates a Website to play GoFish against an AI
+Github Pages Hosted Version: https://dennisli66.github.io/GoFish/
 
 # What The Code Does
 ## A) The Set-Up
