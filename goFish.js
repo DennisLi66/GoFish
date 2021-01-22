@@ -605,7 +605,11 @@ class theGame{
                 let checkMe = this.p1.doesHandHaveCard(newCard[0]);
                 if (checkMe != -1){
                     // a card was found
-                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew into a pair of " + newCard[0] + "'s.<br>";
+                    let t = newCard[0];
+                    if (t == 0){
+                        t = 10;
+                    }
+                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew into a pair of " + t + "'s.<br>";
                     this.p1.removeAtIndex(checkMe);
                     this.watchlist.delete(newCard[0]);
                     this.p1Score++;
@@ -635,7 +639,11 @@ class theGame{
                 }
                 else{ //a card was not found
                     //pass back to AI
-                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew a " + newCard[0] + ".<br>";
+                    let t = newCard[0];
+                    if (t == 0){
+                        t = 10;
+                    }
+                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew a " + t + ".<br>";
                     this.p1.addToHand(newCard);
                     if ((this.difficulty == 0)||(this.difficulty == 2)){
                         this.promptForAiActionEasy("p2");
@@ -673,7 +681,11 @@ class theGame{
                 let newCard = this.deck.draw();
                 let checkMe = this.p2.doesHandHaveCard(newCard[0]);
                 if (checkMe != -1){
-                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew into a pair of " + newCard[0] + "'s.<br>";
+                    let t = newCard[0];
+                    if (t == 0){
+                        t = 10;
+                    }
+                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew into a pair of " + t + "'s.<br>";
                     this.p2.removeAtIndex(checkMe);
                     this.watchlist.delete(newCard[0]);
                     this.p2Score++;
@@ -698,7 +710,11 @@ class theGame{
                     }
                 }
                 else{
-                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew a " + newCard[0] + ".<br>";
+                    let t = newCard[0];
+                    if (t == 0){
+                        t = 10;
+                    }
+                    document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "You drew a " + t + ".<br>";
                     this.p2.addToHand(newCard);
                     if ((this.difficulty == 0)||(this.difficulty == 2)){
                         this.promptForAiActionEasy("p1");
@@ -773,7 +789,11 @@ class theGame{
                 if (checkMe != -1){
                     //remove pair card from p1 hand and increment p1 score by 1
                     // console.log("The AI found a pair of " + newCard[0])
-                    document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI found a pair of " + newCard[0] + ".<br>";
+                    let t = newCard[0];
+                    if (t == 0){
+                        t = 10;
+                    }
+                    document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI found a pair of " + t + ".<br>";
                     // this.p1.removeFromHand(checkMe); //UNTESTED
                     this.p1.removeAtIndex(checkMe);
                     this.p1Score++;
@@ -811,7 +831,7 @@ class theGame{
             }
 
         }
-        //fix p2
+        //
         else if (x == "p2"){
             //same thing but im player 1 now
             if (this.p2.hand.length == 0){
@@ -842,8 +862,12 @@ class theGame{
                 let checkMe = this.p2.doesHandHaveCard(newCard[0]);
                 if (checkMe != -1){
                     //remove pair card from p1 hand and increment p1 score by 1
-                    document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI found a pair of " + newCard[0] + ".<br>";
-                    this.p2.removeAtIndex(checkMe); //UNTESTED
+                    let t = newCard[0];
+                    if (t == 0){
+                        t = 10;
+                    }
+                    document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI found a pair of " + t + ".<br>";
+                    this.p2.removeAtIndex(checkMe); 
                     this.p2Score++;
                     document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI's score is now " + this.p2Score + ".<br>";
                     if (newCard[0] == cardSearch){
@@ -864,7 +888,7 @@ class theGame{
                 //take card from player 2 and increment score, return true
                 document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "You give your card to the AI.<br>";
                 this.p2.removeAtIndex(rNum);
-                this.p1.removeAtIndex(checkMe); //UNTESTED
+                this.p1.removeAtIndex(checkMe); 
                 this.p2Score++;
                 document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI's score is now " + this.p2Score + ".<br>";
                 return true;
