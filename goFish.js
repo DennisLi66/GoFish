@@ -344,9 +344,8 @@ class theGame{
             this.p1.addToHand(this.deck.draw());
             this.p2.addToHand(this.deck.draw());
         }
-        let toPost = "The game begins.<br>";
         let newText = this.eliminatePairs();
-        document.getElementById('infoBox').innerHTML = "Gameplay!";
+        document.getElementById('infoBox').innerHTML = "Remaining Cards in Deck:" + this.deck.deck.length;
         document.getElementById('actionBar').innerHTML = "";
         document.getElementById('actionBar').innerHTML = newText;
         // start a turn...
@@ -902,7 +901,6 @@ class theGame{
 
         }
     }
-    //untested
     promptForAiActionHard(x){
         document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI starting their turn.<br>";
         let streakbroken = false;
@@ -993,6 +991,8 @@ class theGame{
     }
     victoryText(){
         document.getElementById("actionBar").innerHTML = "";
+        this.displayHand(this.p1.hand);
+        this.displayAiHandCheat(this.p2.hand);
         let textToWrite = "The game is over, as both deck and hand are empty. <br>";
         //look and see who has the most points, or tie.
         if (this.p2Score == this.p1Score){
