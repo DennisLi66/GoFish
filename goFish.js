@@ -344,8 +344,9 @@ class theGame{
             this.p1.addToHand(this.deck.draw());
             this.p2.addToHand(this.deck.draw());
         }
+
         let newText = this.eliminatePairs();
-        document.getElementById('infoBox').innerHTML = "Remaining Cards in Deck:" + this.deck.deck.length;
+        document.getElementById('infoBox').innerHTML = "Gameplay!";
         document.getElementById('actionBar').innerHTML = "";
         document.getElementById('actionBar').innerHTML = newText;
         // start a turn...
