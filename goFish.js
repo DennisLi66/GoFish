@@ -44,7 +44,6 @@ class goFishDeck{
             deck[i] = deck[j]
             deck[j] = temp
           }
-
         this.deck = deck;
     }
     //how many cards are in the deck?
@@ -56,7 +55,6 @@ class goFishDeck{
         //pop the top card of the deck
         return this.deck.shift();
     }
-
 }
 class goFishHand{
     constructor(){
@@ -69,7 +67,6 @@ class goFishHand{
     //check if a hand has a card of a number Untested
     doesHandHaveCard(x){
         for (let y = 0; y < this.hand.length; y++){
-            // console.log(this.hand[y]);
             if (this.hand[y][0] == x){
                 return y;
             }
@@ -119,8 +116,6 @@ class theGame{
     writeToToolTips(x){
         document.getElementById("toolTips").innerText = x;
     }
-    ///////////
-
     /////////////Set-Up FUnctions
     //used at the beginning of the game to remove pairs
     eliminatePairs(){
@@ -140,7 +135,6 @@ class theGame{
                 let code = this.p1.hand[p1C][0];
                 this.p1.removeAtIndex(p1C+pos);
                 this.p1.removeAtIndex(p1C);
-                //
                 this.p1Score++;
                 reset = true
                 if (this.actualPlayer == "p1"){
@@ -231,17 +225,17 @@ class theGame{
         let chText = "The AI will remember the cards you have asked for, and you can see its cards."
 
         document.getElementById("actionBar").innerHTML = "Hello, " + this.playerName + "!<br>" +
-        "What difficulty are you looking for?<br>" + 
+        "What difficulty are you looking for?<br>" +
         "<form>" +
-        "<input type='radio' id='Easy' name='diff' value='easy' onclick='window.game.writeToToolTips(\"" + eText + "\")'>" +  
+        "<input type='radio' id='Easy' name='diff' value='easy' onclick='window.game.writeToToolTips(\"" + eText + "\")'>" +
         "<label for='Easy'>Easy</label><br>" +
         "<input type='radio' id='Hard' name='diff' value='hard' onclick='window.game.writeToToolTips(\"" + hText + "\")'>" +
         "<label for='Hard'>Hard</label><br>" +
-        "<input type='radio' id='CEasy' name='diff' value='easyC' onclick='window.game.writeToToolTips(\"" + ceText + "\")'>" +  
+        "<input type='radio' id='CEasy' name='diff' value='easyC' onclick='window.game.writeToToolTips(\"" + ceText + "\")'>" +
         "<label for='CEasy'>Cheating-Easy</label><br>" +
         "<input type='radio' id='CHard' name='diff' value='hardC' onclick='window.game.writeToToolTips(\"" + chText + "\")'>" +
         "<label for='CHard'>Cheating-Hard</label><br>" +
-        "</form>" + 
+        "</form>" +
         //move on to game format
         "<button onclick='window.game.promptForFormat()'>Confirm</button>";
     }
@@ -253,6 +247,7 @@ class theGame{
             if (diffCheck[c].checked){
                 // console.log(c);
                 this.difficulty = c;
+                //  0 is ez, 1 is hard, 2 is ezCheat, 3 is hardCheat
             }
         }
         if (this.difficulty == -1){
@@ -264,12 +259,12 @@ class theGame{
             document.getElementById("errorBox").innerText = "";
             document.getElementById("toolTips").innerText = "";
             //prompt for player 1 or 2
-            document.getElementById('actionBar').innerHTML = 
+            document.getElementById('actionBar').innerHTML =
             "Who will take their turn first, the AI or you?<br>" +
-            "<form>" + 
-            "<input type='radio' id='AI' name='ord' value='AI'>" +  
+            "<form>" +
+            "<input type='radio' id='AI' name='ord' value='AI'>" +
             "<label for='AI'>The AI will go first.</label><br>" +
-            "<input type='radio' id='pla' name='ord' value='pla'>" +  
+            "<input type='radio' id='pla' name='ord' value='pla'>" +
             "<label for='pla'>You will go first.</label><br>" +
             "</form>" +
             "<button onclick='window.game.ruleConfirmation()'>Confirm</button>";
@@ -279,7 +274,6 @@ class theGame{
         //confirm the settings are correct
         //if they didnt pick get mad
         let ordCheck = document.getElementsByName("ord");
-        // console.log(ordCheck);
         let y = -1;
         for (let c = 0; c < ordCheck.length; c++){
             if (ordCheck[c].checked){
@@ -290,11 +284,9 @@ class theGame{
         // console.log(y);
         if (y != -1){
             if (y == 1){
-                // console.log("Player 1");
                 this.actualPlayer = "p1";
             }
             else{
-                // console.log("Player 2");
                 this.actualPlayer = "p2";
             }
         }
@@ -306,8 +298,8 @@ class theGame{
 
         //confirm and list settings, else restart.
         document.getElementById("errorBox").innerText = "";
-        // document.getElementById("actionBar").innerText = 
-        let senText = 
+        // document.getElementById("actionBar").innerText =
+        let senText =
         "These are the settings you have chosen." +
         "Your chosen name is: " + this.playerName + ".<br>";
         if (this.difficulty == 0){
@@ -330,7 +322,7 @@ class theGame{
             // console.log("Player 2");
             senText += "The player that will go first is the AI."
         }
-        senText += 
+        senText +=
         //add a return button
         "<br>Would you like to change anything?<br>" +
         "<button onclick='window.game.gameStartUp()'>Restart</button><emsp><button onclick='window.game.theGameBegins()'>Start</button";
@@ -375,8 +367,6 @@ class theGame{
 
     }
     /////////////////////////////////////////////////////////
-
-
     ///Player Actions
     displayHand(cardList){
         //change style to reflect amount of cards
@@ -403,7 +393,6 @@ class theGame{
         let suit = "";
         let identity = "";
         //draw a card if empty
-        // console.log(cardList.length);
         for (let i = 0; i < cardList.length; i++){
             //suit dictation
             if (cardList[i][1] == "H"){
@@ -432,13 +421,11 @@ class theGame{
             else if (identity == "Q"){
                 identity = "Queen";
             }
-            //
-
             //each card width should be 0.8vw * (100/CARDLIST.SIZE)
             // <img src=".png" alt="Smiley face" height="42" width="42"></img>
             htmlToShow += "<img onclick='window.game.designateCard(" + i + ",\"" + suit + "\",\"" + identity +
             "\")' src='Cards/" +
-            cardList[i] +".png' alt='" +identity+ " of " + suit + 
+            cardList[i] +".png' alt='" +identity+ " of " + suit +
             "' width='" + (8 * 100/7)   + "vw'></img>";
         }
         document.getElementById("yourCards").innerHTML = htmlToShow;
@@ -492,7 +479,7 @@ class theGame{
             //each card width should be 0.8vw * (100/CARDLIST.SIZE)
             // <img src=".png" alt="Smiley face" height="42" width="42"></img>
             htmlToShow += "<img src='Cards/" +
-            cardList[i] +".png' alt='" +identity+ " of " + suit + 
+            cardList[i] +".png' alt='" +identity+ " of " + suit +
             "' width='" + (8 * 100/cardList.length)   + "vw'></img>";
         }
         document.getElementById("yourCards").innerHTML = htmlToShow;
@@ -541,7 +528,7 @@ class theGame{
             //each card width should be 0.8vw * (100/CARDLIST.SIZE)
             // <img src=".png" alt="Smiley face" height="42" width="42"></img>
             htmlToShow += "<img src='Cards/" +
-            cardList[i] +".png' alt='" +identity+ " of " + suit + 
+            cardList[i] +".png' alt='" +identity+ " of " + suit +
             "' width='" + (8 * 100/7)   + "vw'></img>";
         }
         document.getElementById("enemyLocation").innerHTML = htmlToShow;
@@ -564,7 +551,6 @@ class theGame{
         //check if opponet has selected card and set selected to default
         //display without clicking ability
         //check for victory and turn over to AI if not victory
-
         ///clear the actionBar
         document.getElementById("toolTips").innerHTML = "";
         document.getElementById("actionBar").innerHTML = "";
@@ -593,7 +579,11 @@ class theGame{
                 //do it again
                 else{
                     document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "Since you matched, you get another turn.<br>";
-                    this.displayAiHandCheat(this.p2.hand);
+                    if (this.difficulty === 2 || this.difficulty === 3){
+                        this.displayAiHandCheat(this.p2.hand);
+                    }else{
+                        this.displayAiHand(this.p2.hand);
+                    }
                     this.displayHand(this.p1.hand);
                 }
             }
@@ -624,7 +614,11 @@ class theGame{
                         document.getElementById("actionBar").innerHTML = document.getElementById('actionBar').innerHTML + "Since you got the card you asked for, you get another turn.<br>";
                         // console.log(this.p2.hand);
                         // console.log(this.p1.hand);
-                        this.displayAiHandCheat(this.p2.hand);
+                        if (this.difficulty === 2 || this.difficulty === 3){
+                          this.displayAiHandCheat(this.p2.hand);
+                        }else{
+                          this.displayAiHand(this.p2.hand);
+                        }
                         this.displayHand(this.p1.hand);
                     }
                     else{                     ///do not get another turn
@@ -672,7 +666,11 @@ class theGame{
                 }
                 else{
                     document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "Since you matched, you get another turn.<br>";
-                    this.displayAiHandCheat(this.p1.hand);
+                    if (this.difficulty === 2 || this.difficulty === 3){
+                      this.displayAiHandCheat(this.p1.hand);
+                    }else{
+                      this.displayAiHand(this.p1.hand);
+                    }
                     this.displayHand(this.p2.hand);
                 }
             }
@@ -696,7 +694,11 @@ class theGame{
                             return;
                         }
                         document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "Since you got the card you asked for, you get another turn.<br>";
-                        this.displayAiHandCheat(this.p2.hand);
+                        if (this.difficulty === 2 || this.difficulty === 3){
+                          this.displayAiHandCheat(this.p2.hand);
+                        }else{
+                          this.displayAiHand(this.p2.hand);
+                        }
                         this.displayHand(this.p1.hand);
                     }
                     else{
@@ -750,7 +752,11 @@ class theGame{
             }
             else{//x == p2
                 this.displayHand(this.p1.hand);
-                this.displayAiHandCheat(this.p2.hand);
+                if (this.difficulty === 2 || this.difficulty === 3){
+                  this.displayAiHandCheat(this.p2.hand);
+                }else{
+                  this.displayAiHand(this.p2.hand);
+                }
             }
         }
     }
@@ -784,7 +790,7 @@ class theGame{
                 // console.log("You tell them to GO FISH.");
                 document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "You tell them to GO FISH.<br>";
                 let newCard = this.deck.draw();
-                //if card drawn is a pair 
+                //if card drawn is a pair
                 let checkMe = this.p1.doesHandHaveCard(newCard[0]);
                 if (checkMe != -1){
                     //remove pair card from p1 hand and increment p1 score by 1
@@ -858,7 +864,7 @@ class theGame{
                 //didnt have it
                 document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "You tell them to GO FISH.<br>";
                 let newCard = this.deck.draw();
-                //if card drawn is a pair 
+                //if card drawn is a pair
                 let checkMe = this.p2.doesHandHaveCard(newCard[0]);
                 if (checkMe != -1){
                     //remove pair card from p1 hand and increment p1 score by 1
@@ -867,7 +873,7 @@ class theGame{
                         t = 10;
                     }
                     document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI found a pair of " + t + ".<br>";
-                    this.p2.removeAtIndex(checkMe); 
+                    this.p2.removeAtIndex(checkMe);
                     this.p2Score++;
                     document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI's score is now " + this.p2Score + ".<br>";
                     if (newCard[0] == cardSearch){
@@ -888,7 +894,7 @@ class theGame{
                 //take card from player 2 and increment score, return true
                 document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "You give your card to the AI.<br>";
                 this.p2.removeAtIndex(rNum);
-                this.p1.removeAtIndex(checkMe); 
+                this.p1.removeAtIndex(checkMe);
                 this.p2Score++;
                 document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI's score is now " + this.p2Score + ".<br>";
                 return true;
@@ -917,14 +923,22 @@ class theGame{
         else{ //no victoy
         document.getElementById("actionBar").innerHTML = document.getElementById("actionBar").innerHTML + "The AI is ending their turn.<br>";
             if (x == "p1"){
+              if (this.difficulty === 2 || this.difficulty === 3){
                 this.displayAiHandCheat(this.p1.hand);
+              }else{
+                this.displayAiHand(this.p1.hand);
+              }
                 this.displayHand(this.p2.hand);
             }
             else{//x == p2
                 this.displayHand(this.p1.hand);
-                this.displayAiHandCheat(this.p2.hand);
+                if (this.difficulty === 2 || this.difficulty === 3){
+                  this.displayAiHandCheat(this.p2.hand);
+                }else{
+                  this.displayAiHand(this.p2.hand);
+                }
             }
-        }  
+        }
     }
     selectCardFromHandHRD(x){
         if (x == "p1"){
@@ -942,7 +956,7 @@ class theGame{
                 //pick a random card from the possible list
                 let rNum = Math.floor(Math.random() * Math.floor(possible.length));
                 rNum = possible[rNum];
-                document.getElementById("actionBar").innerHTML = document.getElementById("actionBar") + "Based on previous asking behavior, the AI has chosen " + rNum + ".<br>"; 
+                document.getElementById("actionBar").innerHTML = document.getElementById("actionBar") + "Based on previous asking behavior, the AI has chosen " + rNum + ".<br>";
                 this.watchlist.delete(rNum);
                 let ans = this.p2.doesHandHaveCard(rNum);
                 this.p2.removeAtIndex(ans);
